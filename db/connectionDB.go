@@ -45,3 +45,8 @@ func getConnectionString() string {
 	godotenv.Load(".env")
 	return os.Getenv("MONGO_CONNECTION")
 }
+
+func GetDBName() string {
+	godotenv.Load(".env")
+	return os.Getenv("MONGO_DB_NAME")
+}
