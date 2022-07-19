@@ -13,7 +13,7 @@ func Insert(u models.User) (string, bool, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
 
-	db := MongoCN.Database("twitter-clone")
+	db := MongoCN.Database(GetDBName())
 	col := db.Collection("users")
 
 	u.Password, _ = PasswordEncrypt(u.Password)

@@ -22,7 +22,7 @@ func Handlers() {
 	PORT := os.Getenv("PORT")
 
 	if PORT == "" {
-		PORT = "8080"
+		PORT = "8083"
 	}
 
 	handler := cors.AllowAll().Handler(router)
