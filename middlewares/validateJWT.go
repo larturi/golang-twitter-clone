@@ -6,7 +6,7 @@ import (
 	"github.com/larturi/golang-twitter-clone/routers"
 )
 
-func validateJWT(next http.HandlerFunc) http.HandlerFunc {
+func ValidateJWT(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		_, _, _, err := routers.ProcessToken(r.Header.Get("Authorization"))
 

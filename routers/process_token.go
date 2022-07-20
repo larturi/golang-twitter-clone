@@ -10,7 +10,7 @@ import (
 )
 
 var Email string
-var IdUser string
+var IDUser string
 
 func ProcessToken(token string) (*models.Claim, bool, string, error) {
 	miClave := []byte("asdfg12345$@!")
@@ -31,9 +31,10 @@ func ProcessToken(token string) (*models.Claim, bool, string, error) {
 		_, encontrado, _ := db.CheckUserExists(claims.Email)
 		if encontrado {
 			Email = claims.Email
-			IdUser = claims.ID.Hex()
+			IDUser = claims.ID.Hex()
 		}
-		return claims, encontrado, IdUser, nil
+
+		return claims, encontrado, IDUser, nil
 	}
 
 	if !tkn.Valid {
