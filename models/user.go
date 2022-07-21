@@ -19,3 +19,7 @@ type User struct {
 	City      string             `bson:"city" json:"city,omitempty"`
 	WebSite   string             `bson:"web_site" json:"web_site,omitempty"`
 }
+
+type LoginResponse struct {
+	Token string `json:"token,omitempty"`
+}
