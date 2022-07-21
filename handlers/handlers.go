@@ -15,10 +15,14 @@ import (
 func Handlers() {
 	router := mux.NewRouter()
 
+	// Auth Routes
 	router.HandleFunc("/register", middlewares.CheckDB(routers.Register)).Methods("POST")
 	router.HandleFunc("/login", middlewares.CheckDB(routers.Login)).Methods("POST")
 	router.HandleFunc("/profile", middlewares.CheckDB(middlewares.ValidateJWT(routers.ViewUserProfile))).Methods("GET")
 	router.HandleFunc("/profile", middlewares.CheckDB(middlewares.ValidateJWT(routers.UpdateUserProfile))).Methods("PUT")
+
+	// Tweet Routes
+	router.HandleFunc("/tweet", middlewares.CheckDB(middlewares.ValidateJWT(routers.TweetCreate))).Methods("POST")
 
 	PORT := os.Getenv("PORT")
 
