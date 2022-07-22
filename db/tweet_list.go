@@ -23,7 +23,7 @@ func TweetsList(ID string, page int64) ([]*models.Tweets, bool) {
 
 	opciones := options.Find()
 	opciones.SetLimit(20)
-	opciones.SetSort(bson.D{{Key: "created_at", Value: "Value: -1"}})
+	opciones.SetSort(bson.D{{Key: "created_at", Value: -1}})
 	opciones.SetSkip((page - 1) * 20)
 
 	cursor, err := col.Find(ctx, filter, opciones)
