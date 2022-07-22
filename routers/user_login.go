@@ -10,7 +10,7 @@ import (
 	"github.com/larturi/golang-twitter-clone/models"
 )
 
-func Login(w http.ResponseWriter, r *http.Request) {
+func LoginRouter(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("Content-Type", "application/json")
 
 	var t models.User

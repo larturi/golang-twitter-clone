@@ -16,14 +16,14 @@ func Handlers() {
 	router := mux.NewRouter()
 
 	// Auth Routes
-	router.HandleFunc("/register", middlewares.CheckDB(routers.Register)).Methods("POST")
-	router.HandleFunc("/login", middlewares.CheckDB(routers.Login)).Methods("POST")
-	router.HandleFunc("/profile", middlewares.CheckDB(middlewares.ValidateJWT(routers.ViewUserProfile))).Methods("GET")
-	router.HandleFunc("/profile", middlewares.CheckDB(middlewares.ValidateJWT(routers.UpdateUserProfile))).Methods("PUT")
+	router.HandleFunc("/register", middlewares.CheckDB(routers.RegisterRouter)).Methods("POST")
+	router.HandleFunc("/login", middlewares.CheckDB(routers.LoginRouter)).Methods("POST")
+	router.HandleFunc("/profile", middlewares.CheckDB(middlewares.ValidateJWT(routers.ViewUserProfileRouter))).Methods("GET")
+	router.HandleFunc("/profile", middlewares.CheckDB(middlewares.ValidateJWT(routers.UpdateUserProfileRouter))).Methods("PUT")
 
 	// Tweet Routes
-	router.HandleFunc("/tweet", middlewares.CheckDB(middlewares.ValidateJWT(routers.TweetCreate))).Methods("POST")
-	router.HandleFunc("/tweets", middlewares.CheckDB(middlewares.ValidateJWT(routers.TweetsList))).Methods("GET")
+	router.HandleFunc("/tweet", middlewares.CheckDB(middlewares.ValidateJWT(routers.TweetCreateRouter))).Methods("POST")
+	router.HandleFunc("/tweets", middlewares.CheckDB(middlewares.ValidateJWT(routers.TweetsListRouter))).Methods("GET")
 
 	PORT := os.Getenv("PORT")
 

@@ -8,7 +8,7 @@ import (
 	"github.com/larturi/golang-twitter-clone/models"
 )
 
-func Register(w http.ResponseWriter, r *http.Request) {
+func RegisterRouter(w http.ResponseWriter, r *http.Request) {
 
 	var t models.User
 	err := json.NewDecoder(r.Body).Decode(&t)

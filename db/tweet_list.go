@@ -10,6 +10,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+// Lista de Tweets de un usuario determinado
 func TweetsList(ID string, page int64) ([]*models.Tweets, bool) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*15)
 	defer cancel()

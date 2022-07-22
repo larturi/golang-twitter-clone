@@ -9,7 +9,7 @@ import (
 	"github.com/larturi/golang-twitter-clone/models"
 )
 
-func TweetCreateRouter(w http.ResponseWriter, r *http.Request) {
+func TweetDeleteRouter(w http.ResponseWriter, r *http.Request) {
 
 	var message models.Tweet
 	json.NewDecoder(r.Body).Decode(&message)

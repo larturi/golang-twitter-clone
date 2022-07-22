@@ -8,7 +8,7 @@ import (
 	"github.com/larturi/golang-twitter-clone/models"
 )
 
-func ViewUserProfile(w http.ResponseWriter, r *http.Request) {
+func ViewUserProfileRouter(w http.ResponseWriter, r *http.Request) {
 	ID := r.URL.Query().Get("id")
 	if len(ID) < 1 {
 		http.Error(w, "Debe enviar el parámetro ID", http.StatusBadRequest)
@@ -26,7 +26,7 @@ func ViewUserProfile(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(perfil)
 }
 
-func UpdateUserProfile(w http.ResponseWriter, r *http.Request) {
+func UpdateUserProfileRouter(w http.ResponseWriter, r *http.Request) {
 	var t models.User
 	err := json.NewDecoder(r.Body).Decode(&t)
 

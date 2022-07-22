@@ -12,7 +12,7 @@ import (
 var Email string
 var IDUser string
 
-func ProcessToken(token string) (*models.Claim, bool, string, error) {
+func ProcessTokenRouter(token string) (*models.Claim, bool, string, error) {
 	miClave := []byte("asdfg12345$@!")
 	claims := &models.Claim{}
 
