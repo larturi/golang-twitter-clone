@@ -1,34 +1,25 @@
 package routers
 
 import (
-	"encoding/json"
 	"net/http"
-	"time"
 
 	"github.com/larturi/golang-twitter-clone/db"
-	"github.com/larturi/golang-twitter-clone/models"
 )
 
 func TweetDeleteRouter(w http.ResponseWriter, r *http.Request) {
 
-	var message models.Tweet
-	json.NewDecoder(r.Body).Decode(&message)
-
-	newTweet := models.TweetSave{
-		UserId:    IDUser,
-		Message:   message.Message,
-		CreatedAt: time.Now(),
+	ID := r.URL.Query().Get("id")
+	if len(ID) < 1 {
+		http.Error(w, "Debe enviar el parametro id del tweet", http.StatusBadRequest)
+		return
 	}
 
-	_, status, err := db.TweetInsert(newTweet)
+	err := db.TweetDelete(ID, IDUser)
 	if err != nil {
-		http.Error(w, "Error al intentar crear el tweet"+err.Error(), http.StatusBadRequest)
+		http.Error(w, "Error al ententar eliminar el tweet "+err.Error(), http.StatusBadRequest)
+		return
 	}
 
-	if !status {
-		http.Error(w, "Error al intentar crear el tweet", http.StatusBadRequest)
-	}
-
-	w.WriteHeader(http.StatusCreated)
-
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
 }
