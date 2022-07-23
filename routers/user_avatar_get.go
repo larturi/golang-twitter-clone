@@ -8,7 +8,7 @@ import (
 	"github.com/larturi/golang-twitter-clone/db"
 )
 
-func UserAvatarGetRouter(w http.ResponseWriter, r *http.Request) {
+func UserGetAvatarRouter(w http.ResponseWriter, r *http.Request) {
 
 	ID := r.URL.Query().Get("id")
 	if len(ID) < 1 {

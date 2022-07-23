@@ -21,6 +21,12 @@ func Handlers() {
 	router.HandleFunc("/profile", middlewares.CheckDB(middlewares.ValidateJWT(routers.ViewUserProfileRouter))).Methods("GET")
 	router.HandleFunc("/profile", middlewares.CheckDB(middlewares.ValidateJWT(routers.UpdateUserProfileRouter))).Methods("PUT")
 
+	// Avatar & Banner Routes
+	router.HandleFunc("/uploadAvatar", middlewares.CheckDB(middlewares.ValidateJWT(routers.UserSaveAvatarRouter))).Methods("POST")
+	router.HandleFunc("/getAvatar", middlewares.CheckDB(routers.UserGetAvatarRouter)).Methods("GET")
+	router.HandleFunc("/uploadBanner", middlewares.CheckDB(middlewares.ValidateJWT(routers.UserSaveBannerRouter))).Methods("POST")
+	router.HandleFunc("/getBanner", middlewares.CheckDB(routers.UserGetBannerRouter)).Methods("GET")
+
 	// Tweet Routes
 	router.HandleFunc("/tweet", middlewares.CheckDB(middlewares.ValidateJWT(routers.TweetCreateRouter))).Methods("POST")
 	router.HandleFunc("/tweets", middlewares.CheckDB(middlewares.ValidateJWT(routers.TweetsListRouter))).Methods("GET")

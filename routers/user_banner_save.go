@@ -10,11 +10,11 @@ import (
 	"github.com/larturi/golang-twitter-clone/models"
 )
 
-func UserAvatarRouter(w http.ResponseWriter, r *http.Request) {
+func UserSaveBannerRouter(w http.ResponseWriter, r *http.Request) {
 
-	file, handler, _ := r.FormFile("avatar")
+	file, handler, _ := r.FormFile("banner")
 	var extension string = strings.Split(handler.Filename, ".")[1]
-	var archivo string = "uploads/avatars/" + IDUser + "." + extension
+	var archivo string = "uploads/banners/" + IDUser + "." + extension
 
 	f, err := os.OpenFile(archivo, os.O_WRONLY|os.O_CREATE, 0666)
 	if err != nil {
@@ -31,11 +31,11 @@ func UserAvatarRouter(w http.ResponseWriter, r *http.Request) {
 	var user models.User
 	var status bool
 
-	user.Avatar = IDUser + "." + extension
+	user.Banner = IDUser + "." + extension
 	status, err = db.UpdateUserProfile(user, IDUser)
 
 	if err != nil || !status {
-		http.Error(w, "Error al grabar el avatar en la BD"+err.Error(), http.StatusBadRequest)
+		http.Error(w, "Error al cgrabar el banner en la BD"+err.Error(), http.StatusBadRequest)
 		return
 	}
 
