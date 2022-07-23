@@ -12,7 +12,7 @@ import (
 
 func UserBannerRouter(w http.ResponseWriter, r *http.Request) {
 
-	file, handler, err := r.FormFile("banner")
+	file, handler, _ := r.FormFile("banner")
 	var extension string = strings.Split(handler.Filename, ".")[1]
 	var archivo string = "uploads/banners/" + IDUser + "." + extension
 

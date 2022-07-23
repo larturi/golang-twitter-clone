@@ -12,7 +12,7 @@ import (
 
 func UserAvatarRouter(w http.ResponseWriter, r *http.Request) {
 
-	file, handler, err := r.FormFile("avatar")
+	file, handler, _ := r.FormFile("avatar")
 	var extension string = strings.Split(handler.Filename, ".")[1]
 	var archivo string = "uploads/avatars/" + IDUser + "." + extension
 
@@ -35,7 +35,7 @@ func UserAvatarRouter(w http.ResponseWriter, r *http.Request) {
 	status, err = db.UpdateUserProfile(user, IDUser)
 
 	if err != nil || !status {
-		http.Error(w, "Error al cgrabar el avatar en la BD"+err.Error(), http.StatusBadRequest)
+		http.Error(w, "Error al grabar el avatar en la BD"+err.Error(), http.StatusBadRequest)
 		return
 	}
 
