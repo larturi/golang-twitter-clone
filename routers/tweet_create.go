@@ -23,12 +23,13 @@ func TweetCreateRouter(w http.ResponseWriter, r *http.Request) {
 	_, status, err := db.TweetInsert(newTweet)
 	if err != nil {
 		http.Error(w, "Error al intentar crear el tweet"+err.Error(), http.StatusBadRequest)
+		return
 	}
 
 	if !status {
 		http.Error(w, "Error al intentar crear el tweet", http.StatusBadRequest)
+		return
 	}
 
 	w.WriteHeader(http.StatusCreated)
-
 }
