@@ -15,11 +15,12 @@ import (
 func Handlers() {
 	router := mux.NewRouter()
 
-	// Auth Routes
+	// Auth & User Routes
 	router.HandleFunc("/register", middlewares.CheckDB(routers.RegisterRouter)).Methods("POST")
 	router.HandleFunc("/login", middlewares.CheckDB(routers.LoginRouter)).Methods("POST")
 	router.HandleFunc("/profile", middlewares.CheckDB(middlewares.ValidateJWT(routers.ViewUserProfileRouter))).Methods("GET")
 	router.HandleFunc("/profile", middlewares.CheckDB(middlewares.ValidateJWT(routers.UpdateUserProfileRouter))).Methods("PUT")
+	router.HandleFunc("/userSearch", middlewares.CheckDB(middlewares.ValidateJWT(routers.UserSearchRouter))).Methods("GET")
 
 	// Avatar & Banner Routes
 	router.HandleFunc("/uploadAvatar", middlewares.CheckDB(middlewares.ValidateJWT(routers.UserSaveAvatarRouter))).Methods("POST")
