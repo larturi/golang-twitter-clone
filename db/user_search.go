@@ -73,7 +73,6 @@ func UsersSearch(ID string, page int64, search string, tipo string) ([]*models.U
 			s.WebSite = ""
 			s.City = ""
 			s.Banner = ""
-			s.Email = ""
 
 			results = append(results, &s)
 		}

@@ -22,3 +22,14 @@ type Tweets struct {
 	Message   string             `bson:"message" json:"message,omitempty"`
 	CreatedAt time.Time          `bson:"created_at" json:"created_at,omitempty"`
 }
+
+type TweetsFollowing struct {
+	ID           primitive.ObjectID `bson:"_id" json:"_id,omitempty"`
+	UserId       string             `bson:"user_id" json:"user_id,omitempty"`
+	UserRelation string             `bson:"user_relation_id" json:"user_relation_id,omitempty"`
+	Tweet        struct {
+		ID        primitive.ObjectID `bson:"_id" json:"_id,omitempty"`
+		Message   string             `bson:"message" json:"message,omitempty"`
+		CreatedAt time.Time          `bson:"created_at" json:"created_at,omitempty"`
+	}
+}

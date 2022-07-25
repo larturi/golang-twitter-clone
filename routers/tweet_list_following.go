@@ -8,13 +8,7 @@ import (
 	"github.com/larturi/golang-twitter-clone/db"
 )
 
-func TweetsListRouter(w http.ResponseWriter, r *http.Request) {
-
-	ID := r.URL.Query().Get("id")
-	if len(ID) < 1 {
-		http.Error(w, "Debe enviar el parámetro id", http.StatusBadRequest)
-		return
-	}
+func TweetsListFollowingRouter(w http.ResponseWriter, r *http.Request) {
 
 	if len(r.URL.Query().Get("page")) < 1 {
 		http.Error(w, "Debe enviar el parámetro page", http.StatusBadRequest)
@@ -27,7 +21,7 @@ func TweetsListRouter(w http.ResponseWriter, r *http.Request) {
 	}
 
 	pag := int64(page)
-	respuesta, correcto := db.TweetsList(ID, pag)
+	respuesta, correcto := db.TweetsListFollowing(IDUser, pag)
 	if !correcto {
 		http.Error(w, "Error al leer los tweets", http.StatusBadRequest)
 		return
