@@ -36,7 +36,7 @@ func RegisterRouter(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	_, status, err := db.Insert(t)
+	_, status, err := db.UserInsert(t)
 	if err != nil {
 		http.Error(w, "Error al intentar crear el usuario", http.StatusBadRequest)
 	}
