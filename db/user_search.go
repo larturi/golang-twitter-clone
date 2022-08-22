@@ -25,7 +25,11 @@ func UsersSearch(ID string, page int64, search string, tipo string) ([]*models.U
 	findOptions.SetLimit(20)
 
 	query := bson.M{
-		"name": bson.M{"$regex": `(?i)` + search},
+		"$or": []interface{}{
+			bson.M{"name": bson.M{"$regex": `(?i)` + search}},
+			bson.M{"last_name": bson.M{"$regex": `(?i)` + search}},
+			bson.M{"email": bson.M{"$regex": `(?i)` + search}},
+		},
 	}
 
 	cur, err := col.Find(ctx, query, findOptions)
